@@ -1,4 +1,5 @@
 @use "sass:math";
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans:ital,wght@0,800;1,400&family=Poppins:wght@300&display=swap");
 
 // ------------
 
@@ -15,23 +16,37 @@
 @function convertToEm($px) {
   @return math.div($px, 16) + em;
 }
+@function to-vw($px, $context: 1366px) {
+  @return math.div($px, $context) * 100vw;
+}
+
+@function to-vh($px, $context: 768px) {
+  @return math.div($px, $context) * 100vh;
+}
+
+@function vw($px-vw, $base-vw: 1366px) {
+  @return calc(($px-vw * 100vw) / $base-vw);
+}
+
+@function vh($px-vw, $base-vh: 768px) {
+  @return calc(($px-vw * 100vh) / $base-vh);
+}
 
 @mixin flex(
   $direction: row,
   $justify: space-between,
   $align: baseline,
-  $width: 100vw,
-  $mx: 0rem,
-  $my: 0rem,
-  $gap: 0
+  $width: 96vw,
+  $gap: 0,
+  $margin: auto
 ) {
   display: flex;
   flex-direction: $direction;
   justify-content: $justify;
   align-items: $align;
   width: $width;
-  margin: $my $mx;
   gap: $gap;
+  margin: $margin;
 }
 
 * {
@@ -43,61 +58,162 @@ body {
   overflow-x: hidden;
   min-width: 100vw;
   min-height: 100vh;
+  margin: auto;
 }
 
 #hero {
-  @include flex(column);
+  @include flex(column, $margin: 1rem auto);
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: convertToEm(12);
+  line-height: convertToEm(16);
+  color: #dbdbdb;
   .header {
-    @include flex($mx: 3rem);
+    @include flex();
+
+    border-bottom: 1px #ffffff99 solid;
+    margin: auto;
     .hamburger-menu {
       img {
-        height: 20px;
+        height: vh(20px);
       }
     }
   }
   .nav-links {
-    @include flex($gap: convertToEm(56), $width: "fit-content");
+    @include flex($gap: vw(70px), $width: fit-content);
+    .single-link-selected {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 300;
+      font-size: convertToEm(17);
+      padding: 20px;
+      border-bottom: 6px #ffffff solid;
+      color: #dbdbdb;
+    }
+    .single-link {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 300;
+      font-size: convertToEm(17);
+      color: #dbdbdb;
+    }
   }
   .desc {
+    @include flex($justify: start);
     p {
-      width: 40%;
+      width: 30vw;
+      font-weight: 300;
+      font-size: convertToEm(12);
+      line-height: vh(16px);
+      color: #dbdbdb;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 16px;
     }
   }
   .carousel {
-    @include flex($align: center, $width: 113%);
-    margin-left: convertToEm(-64);
+    @include flex($width: 110vw, $align: center, $gap: 16vw);
+    max-height: 45vh;
 
-    .menu-item {
-      .menu-image {
-        img {
-          width: 19vw;
-          filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
-        }
+    .menu-image {
+      img {
+        width: 19vw;
+        filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
       }
-      .menu-selected-image {
-        img {
-          width: 37.5vw;
-          filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
-        }
+    }
+    .menu-selected-image {
+      img {
+        width: 31.5vw;
+        filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
       }
-      .menu-next-image {
-        img {
-          width: 21vw;
-          filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
-          z-index: 5;
-        }
-        .menu-item-next-indicator {
-          font-size: 250px;
-          font-family: "Visage Outline";
-        }
+    }
+    .menu-next-image {
+      @include flex($direction: column, $width: fit-content, $align: self-end);
+      .menu-next-image-container {
+        height: 0;
       }
-      .menu-item-subtitle {
+      img {
+        width: 21vw;
+        filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
+        z-index: 5;
       }
-      .menu-item-title {
+      .menu-item-next-indicator {
+        font-size: 23vw;
+        font-family: "Visage Outline";
+        margin: 0;
       }
+    }
+  }
+
+  .menu-description {
+    .menu-item-subtitle {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: convertToEm(16);
+      line-height: 57px;
+      letter-spacing: 0.169em;
+      text-transform: uppercase;
+      color: #dbdbdb;
+    }
+    .menu-item-title {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: convertToEm(82);
+      margin: 0px 0px 2vw 0px;
+      text-transform: capitalize;
+      color: #dbdbdb;
     }
   }
   .bottom-element {
     @include flex();
+    .carousel-counter-container {
+      border-bottom: 1px #ffffff99 solid;
+      flex-grow: 2;
+      .carousel-counter {
+        @include flex(
+          $justify: center,
+          $gap: vw(24px),
+          $width: fit-content,
+          $margin: 0
+        );
+        border-bottom: 3px #ffffff solid;
+      }
+      .selected-bottom-indicator {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-weight: 800;
+        font-size: convertToEm(24);
+        color: #dbdbdb;
+      }
+
+      .bottom-indicator {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-weight: 400;
+        font-size: convertToEm(16);
+        color: #dbdbdb;
+      }
+    }
+
+    .carousel-nav {
+      flex-grow: 1;
+      @include flex($justify: center, $width: fit-content, $gap: vw(16px));
+      .carousel-nav-icon {
+        img {
+          height: to-vh(45px);
+          width: auto;
+        }
+      }
+    }
+    .social-icons {
+      flex-grow: 1;
+      @include flex($justify: end, $width: fit-content, $gap: vw(30px));
+      img {
+        width: to-vw(42px);
+      }
+    }
   }
 }

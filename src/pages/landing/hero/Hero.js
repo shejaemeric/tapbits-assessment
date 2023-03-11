@@ -2,6 +2,23 @@ import React, { useState } from "react";
 
 export default function Hero() {
   const [selectedItem, setSelectedItem] = useState(1);
+  const [order, setOrder] = useState([0, 1, 2]);
+
+  const handlePrev = () => {
+    const updatedOrder = order.slice();
+    updatedOrder.unshift(updatedOrder[2]);
+    updatedOrder.splice(3, 1);
+    setOrder(updatedOrder);
+    console.log(order);
+  };
+
+  const handleNext = () => {
+    const updatedOrder = order.slice();
+    updatedOrder.push(updatedOrder[0]);
+    updatedOrder.splice(0, 1);
+    setOrder(updatedOrder);
+  };
+
   const menu = [
     {
       id: 0,
@@ -33,7 +50,7 @@ export default function Hero() {
           <img src="./assets/icons/logo.svg" alt="logo" />
         </div>
         <div class="nav-links">
-          <div class="single-link">Home</div>
+          <div class="single-link-selected">Home</div>
           <div class="single-link">Menu</div>
           <div class="single-link">Services</div>
           <div class="single-link">Map</div>
@@ -49,7 +66,9 @@ export default function Hero() {
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
             nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua.
+            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+            Lorem ipsum dolor sit
           </p>
         </div>
         <div></div>
@@ -57,24 +76,25 @@ export default function Hero() {
       </div>
       {/* =============================================================================================== */}
       <div class="carousel">
-        {menu.map((item) => {
-          if (item.id === selectedItem) {
+        {order.map((item) => {
+          if (item === order[1]) {
             return (
               <div class="menu-item">
                 <div class="menu-selected-image">
-                  <img src={item.image} alt={item.alt} />
+                  <img src={menu[item].image} alt={menu[item].alt} />
                 </div>
-                <p class="menu-item-subtitle">{item.subtitle}</p>
-                <p class="menu-item-title">{item.subtitle}</p>
               </div>
             );
-          } else if (item.id === selectedItem + 1) {
+          } else if (item === order[2]) {
             return (
               <div class="menu-item">
                 <div class="menu-next-image">
-                  <img src={item.image} alt={item.alt} />
+                  <div class="menu-next-image-container">
+                    <img src={menu[item].image} alt={menu[item].alt} />
+                  </div>
+
                   <p class="menu-item-next-indicator">
-                    {item.id < 10 ? "0" + item.id : item.id}
+                    {"0" + (menu[item].id + 1)}
                   </p>
                 </div>
               </div>
@@ -83,7 +103,7 @@ export default function Hero() {
             return (
               <div class="menu-item">
                 <div class="menu-image">
-                  <img src={item.image} alt={item.alt} />
+                  <img src={menu[item].image} alt={menu[item].alt} />
                 </div>
               </div>
             );
@@ -91,29 +111,42 @@ export default function Hero() {
         })}
       </div>
       {/* =============================================================================================== */}
+      <div class="menu-description">
+        <p class="menu-item-subtitle">
+          Lorem ipsum dolor sit amet, consetetur.
+        </p>
+        <p class="menu-item-title">Lorem ipsum</p>
+      </div>
+      {/* =============================================================================================== */}
       <div class="bottom-element">
-        <div class="carousel-counter"></div>
+        <div class="carousel-counter-container">
+          <div class="carousel-counter">
+            {[0, 1, 2, 3, 4].map((index) => (
+              <p
+                class={
+                  index === order[2]
+                    ? "selected-bottom-indicator"
+                    : "bottom-indicator"
+                }
+              >
+                {"0" + (index + 1)}
+              </p>
+            ))}
+          </div>
+        </div>
         <div class="carousel-nav">
-          <div class="carousel-nav-icon">
+          <div class="carousel-nav-icon" onClick={handleNext}>
             <img src="./assets/icons/arrow-left.svg" alt="allow-right" />
           </div>
-          <div class="carousel-nav-icon">
+          <div class="carousel-nav-icon" onClick={handlePrev}>
             <img src="./assets/icons/arrow-right.svg" alt="allow-left" />
           </div>
         </div>
         <div class="social-icons">
-          <div class="single-social-icon">
-            <img src="./assets/icons/tiktok.svg" alt="tiktok" />
-            <div class="single-social-icon">
-              <img src="./assets/icons/instagram.svg" alt="instagram" />
-            </div>
-            <div class="single-social-icon">
-              <img src="./assets/icons/twitter.svg" alt="twitter" />
-            </div>
-            <div class="single-social-icon">
-              <img src="./assets/icons/facebook.svg" alt="facebook" />
-            </div>
-          </div>
+          <img src="./assets/icons/tiktok.svg" alt="tiktok" />
+          <img src="./assets/icons/instagram.svg" alt="instagram" />
+          <img src="./assets/icons/twitter.svg" alt="twitter" />
+          <img src="./assets/icons/facebook.svg" alt="facebook" />
         </div>
       </div>
     </div>
