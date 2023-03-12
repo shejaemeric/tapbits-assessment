@@ -1,0 +1,87 @@
+@import "./../../../sass/variables";
+@import "./../../../sass/mixins";
+@import "./../../../sass/functions";
+@import "./../../../sass/fonts.scss";
+
+#footer {
+  :global {
+    @include flex($align: center);
+    flex-wrap: wrap;
+    .carousel-counter-container {
+      border-bottom: 1px $border-color solid;
+      flex-grow: 4;
+      .carousel-counter {
+        @include flex($justify: center, $gap: vw(32px), $width: fit-content);
+        border-bottom: 3px $white solid;
+        padding-bottom: 8px;
+      }
+      .selected-bottom-indicator {
+        font-family: $open-sans-bold;
+        font-size: convertToEm(24);
+        color: $sub-white;
+        line-height: 1;
+        margin: 0px 0px 5px 0px;
+      }
+
+      .bottom-indicator {
+        font-family: $open-sans-regular;
+        font-size: convertToEm(16);
+        color: $sub-white;
+        line-height: 1;
+        margin: 0;
+      }
+    }
+
+    .carousel-nav {
+      flex-grow: 1;
+      @include flex($justify: center, $width: fit-content, $gap: vw(16px));
+      .carousel-nav-icon {
+        img {
+          height: vw(68px);
+          width: auto;
+        }
+      }
+    }
+    .social-icons {
+      flex-grow: 0;
+      @include flex($justify: flex-end, $width: fit-content, $gap: vw(30px));
+      img {
+        width: vw(60px);
+      }
+    }
+    @media screen and (max-width: $sm) {
+      .carousel-counter-container {
+        width: 100vw;
+        margin-bottom: 20px;
+        .carousel-counter {
+          gap: convertToEm(28);
+        }
+        .selected-bottom-indicator {
+          font-size: convertToEm(20);
+        }
+        .bottom-indicator {
+          font-size: convertToEm(10);
+        }
+      }
+      .carousel-nav {
+        justify-content: start;
+        gap: 5.83vw;
+        .carousel-nav-icon {
+          img {
+            width: 45px;
+            height: auto;
+          }
+        }
+      }
+      .social-icons {
+        gap: 0;
+        justify-content: space-between;
+        flex-grow: 1;
+        img {
+          width: 30px;
+          height: auto;
+        }
+      }
+    }
+  }
+}

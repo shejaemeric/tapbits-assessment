@@ -1,0 +1,39 @@
+@import "./../../../sass/variables";
+@import "./../../../sass/mixins";
+@import "./../../../sass/functions";
+@import "./../../../sass/fonts.scss";
+
+#header {
+  :global {
+    @include flex();
+    border-bottom: 1px $border-color solid;
+    padding-bottom: 20px;
+    .nav-links {
+      @include flex($gap: vw(70px), $width: fit-content);
+      .single-link-selected {
+        text-decoration: underline;
+        text-decoration-thickness: auto;
+        text-decoration-thickness: 6px;
+        text-underline-offset: convertToEm(22);
+      }
+      .single-link {
+        font-family: $poppins-light;
+        line-height: 1;
+        font-size: convertToEm(17);
+        color: $sub-white;
+      }
+    }
+
+    .hamburger-menu {
+      img {
+        height: vh(20px);
+      }
+    }
+    @media screen and (max-width: $sm) {
+      .nav-links {
+        display: none;
+        padding-bottom: 50px;
+      }
+    }
+  }
+}

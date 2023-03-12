@@ -1,0 +1,12 @@
+@use "sass:math";
+@function vw($px-vw, $base-vw: 1920px) {
+  @return calc(($px-vw * 100vw) / $base-vw);
+}
+
+@function vh($px-vw, $base-vh: 1080px) {
+  @return calc(($px-vw * 100vh) / $base-vh);
+}
+
+@function convertToEm($px) {
+  @return math.div($px, 16) + em;
+}

@@ -1,0 +1,70 @@
+@import "./../../../sass/variables";
+@import "./../../../sass/mixins";
+@import "./../../../sass/functions";
+@import "./../../../sass/fonts.scss";
+#carousel {
+  :global {
+    .carousel-container {
+      @include flex($width: 110.4vw, $align: center, $gap: vw(227px));
+      height: 36vh;
+      .menu-prev-image {
+        img {
+          width: vw(364px);
+          height: auto;
+          filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
+        }
+      }
+      .menu-selected-image {
+        img {
+          width: vw(732px);
+          height: auto;
+          filter: drop-shadow(0px 7px 3px rgba(0, 0, 0, 0.501961));
+        }
+      }
+      .menu-next-image {
+        @include flex($direction: row, $width: fit-content, $align: flex-start);
+        .menu-next-image-container {
+          height: 0;
+          padding-top: 6vw;
+        }
+        .menu-item-next-indicator {
+          font-size: 29.3vw;
+          line-height: 1;
+          font-family: $londrina-light;
+          margin: 0;
+          width: 0;
+          padding-right: 11.4vw;
+        }
+        img {
+          width: vw(404px);
+
+          height: auto;
+          filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
+          z-index: 5;
+        }
+      }
+    }
+    @media screen and (min-width: $md) and (max-width: $xxxlg) {
+      .carousel-container {
+        margin-left: vw(-150px);
+      }
+    }
+    @media screen and (max-width: $sm) {
+      .carousel-container {
+        flex-wrap: wrap;
+        gap: 0;
+        height: auto;
+        width: 100vw;
+        .menu-selected-image {
+          width: 100vw;
+          order: -1;
+          display: grid;
+          place-items: center;
+          img {
+            width: 67.1vw;
+          }
+        }
+      }
+    }
+  }
+}

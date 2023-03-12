@@ -1,0 +1,51 @@
+@import "./../../../sass/variables";
+@import "./../../../sass/mixins";
+@import "./../../../sass/functions";
+@import "./../../../sass/fonts.scss";
+
+#description {
+  :global {
+    div {
+      .menu-item-subtitle {
+        font-family: $inter-regular;
+        font-size: convertToEm(16);
+        line-height: 1;
+        letter-spacing: 0.129em;
+        text-transform: uppercase;
+        color: $sub-white;
+      }
+
+      .menu-item-title {
+        font-family: $inter-regular;
+        font-size: vw(82px);
+        line-height: 1;
+        text-transform: capitalize;
+        color: $sub-white;
+        margin: 0;
+      }
+      @media screen and (min-width: $lg) and (max-width: $xxlg) {
+        .menu-item-subtitle {
+          letter-spacing: 0.02rem;
+        }
+      }
+
+      @media screen and (max-width: $md) {
+        .menu-item-subtitle {
+          font-size: convertToEm(10);
+        }
+        .menu-item-title {
+          font-size: convertToEm(50);
+        }
+      }
+      @media screen and (max-width: $xsm) {
+        .menu-item-subtitle {
+          font-size: convertToEm(10);
+        }
+        .menu-item-title {
+          font-size: convertToEm(25);
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}
