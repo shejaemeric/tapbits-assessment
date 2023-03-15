@@ -4,18 +4,21 @@ function HeroFooter({ handleNext, handlePrev, selected }) {
   return (
     <div id={styles.footer}>
       <div class="carousel-counter-container">
-        <div class="carousel-counter">
-          {[0, 1, 2, 3, 4].map((index) => (
-            <p
-              class={
-                index === selected
-                  ? "selected-bottom-indicator"
-                  : "bottom-indicator"
-              }
-            >
-              {"0" + (index + 1)}
-            </p>
-          ))}
+        <div class="carousel-counter-line">
+          <div class="carousel-counter">
+            {[0, 1, 2, 3, 4].map((index) => (
+              <p
+                class={
+                  index === selected
+                    ? "selected-bottom-indicator"
+                    : "bottom-indicator"
+                }
+              >
+                {"0" + (index + 1)}
+              </p>
+            ))}
+          </div>
+          <hr class="counter-line"></hr>
         </div>
       </div>
       <div class="carousel-nav">

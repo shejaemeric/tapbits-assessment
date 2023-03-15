@@ -1,5 +1,6 @@
 $base-font-size: 16px;
 
+$large-screen: 3840px;
 $xxxlg: 2560px;
 $xxlg: 1920px;
 $xlg: 1440px;
@@ -10,6 +11,7 @@ $xsm: 375px;
 $xxsm: 300px;
 
 $white: #fff;
+$white-light: #ffffff73;
 $sub-white: #dbdbdb;
 $border-color: #ffffff99;
 $background: linear-gradient(
@@ -30,3 +32,14 @@ $background: linear-gradient(
   94.52852010726929%,
   #c9201b 100%
 );
+
+// $sm: 480px;
+// $small-device:500px;
+// $xxs:320px;
+// $xls:600px;
+// $xlsh:500px;
+// $xms:375px;
+// $md:780px;
+// $lg:1024px;
+// $xlg:1440px;
+// $xxlg:5000px;

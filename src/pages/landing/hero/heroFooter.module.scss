@@ -8,45 +8,58 @@
     @include flex($align: center);
     flex-wrap: wrap;
     .carousel-counter-container {
-      border-bottom: 1px $border-color solid;
+      border-bottom: 2px solid $white-light;
+      //   border-image: linear-gradient(to right, $white 30vw, $white-light 30vw) 1;
       flex-grow: 4;
-      .carousel-counter {
-        @include flex($justify: center, $gap: vw(32px), $width: fit-content);
-        border-bottom: 3px $white solid;
-        padding-bottom: 8px;
-      }
-      .selected-bottom-indicator {
-        font-family: $open-sans-bold;
-        font-size: convertToEm(24);
-        color: $sub-white;
-        line-height: 1;
-        margin: 0px 0px 5px 0px;
-      }
+      .carousel-counter-line {
+        width: fit-content;
+        .carousel-counter {
+          @include flex(
+            $justify: center,
+            $gap: pxToVw(32),
+            $width: fit-content
+          );
+          padding-bottom: 8px;
+          .selected-bottom-indicator {
+            font-family: $open-sans-bold;
+            font-size: fontScale(24);
+            color: $sub-white;
+            line-height: 1;
+            margin: 20px 0px 5px 0px;
+          }
 
-      .bottom-indicator {
-        font-family: $open-sans-regular;
-        font-size: convertToEm(16);
-        color: $sub-white;
-        line-height: 1;
-        margin: 0;
+          .bottom-indicator {
+            font-family: $open-sans-regular;
+            font-size: fontScale(16);
+            color: $sub-white;
+            line-height: 1;
+            margin: 0;
+          }
+        }
+        .counter-line {
+          background-color: white;
+          border: none;
+          height: 2px;
+          margin: 0px 0px -2px 0px;
+        }
       }
     }
 
     .carousel-nav {
       flex-grow: 1;
-      @include flex($justify: center, $width: fit-content, $gap: vw(16px));
+      @include flex($justify: center, $width: fit-content, $gap: pxToVw(16));
       .carousel-nav-icon {
         img {
-          height: vw(68px);
+          height: pxToVh(45);
           width: auto;
         }
       }
     }
     .social-icons {
       flex-grow: 0;
-      @include flex($justify: flex-end, $width: fit-content, $gap: vw(30px));
+      @include flex($justify: flex-end, $width: fit-content, $gap: pxToVw(30));
       img {
-        width: vw(60px);
+        width: pxToVh(60);
       }
     }
     @media screen and (max-width: $sm) {
@@ -54,13 +67,13 @@
         width: 100vw;
         margin-bottom: 20px;
         .carousel-counter {
-          gap: convertToEm(28);
+          gap: pxToEm(107);
         }
         .selected-bottom-indicator {
-          font-size: convertToEm(20);
+          font-size: fontScale(20);
         }
         .bottom-indicator {
-          font-size: convertToEm(10);
+          font-size: fontScale(10);
         }
       }
       .carousel-nav {

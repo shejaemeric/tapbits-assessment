@@ -6,33 +6,39 @@
 #header {
   :global {
     @include flex();
+    margin: auto;
     border-bottom: 1px $border-color solid;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     .nav-links {
-      @include flex($gap: vw(70px), $width: fit-content);
+      @include flex($gap: pxToVw(70), $width: fit-content);
       .single-link-selected {
         text-decoration: underline;
         text-decoration-thickness: auto;
-        text-decoration-thickness: 6px;
-        text-underline-offset: convertToEm(22);
+        text-decoration-thickness: 7px;
+        text-underline-offset: 13px;
       }
       .single-link {
+        @include scaleFont(17);
         font-family: $poppins-light;
         line-height: 1;
-        font-size: convertToEm(17);
         color: $sub-white;
+        &:hover {
+          text-decoration: underline;
+          text-decoration-thickness: auto;
+          text-decoration-thickness: 7px;
+          text-underline-offset: 13px;
+        }
       }
     }
 
     .hamburger-menu {
       img {
-        height: vh(20px);
+        height: pxToVh(20);
       }
     }
     @media screen and (max-width: $sm) {
       .nav-links {
         display: none;
-        padding-bottom: 50px;
       }
     }
   }

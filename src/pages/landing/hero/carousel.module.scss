@@ -4,49 +4,49 @@
 @import "./../../../sass/fonts.scss";
 #carousel {
   :global {
+    width: 103.8vw;
+    // overflow-x: clip;
+    // margin-left: pxToVw(-128);
     .carousel-container {
-      @include flex($width: 110.4vw, $align: center, $gap: vw(227px));
+      @include flex($width: 113vw, $align: center, $gap: pxToVw(335.2));
+      margin: 0 -8%;
       height: 36vh;
+      overflow-x: clip;
       .menu-prev-image {
         img {
-          width: vw(364px);
+          width: pxToVw(364);
           height: auto;
           filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
         }
       }
       .menu-selected-image {
         img {
-          width: vw(732px);
+          width: pxToVw(729);
           height: auto;
           filter: drop-shadow(0px 7px 3px rgba(0, 0, 0, 0.501961));
         }
       }
       .menu-next-image {
-        @include flex($direction: row, $width: fit-content, $align: flex-start);
-        .menu-next-image-container {
-          height: 0;
-          padding-top: 6vw;
-        }
+        @include flex(
+          $direction: column,
+          $width: pxToVw(404),
+          $align: flex-start,
+        );
+
         .menu-item-next-indicator {
-          font-size: 29.3vw;
+          font-size: pxToVw(409);
           line-height: 1;
           font-family: $londrina-light;
-          margin: 0;
+          margin: 0px 0px 0px pxToVw(-256);
           width: 0;
-          padding-right: 11.4vw;
+          height: 0;
         }
         img {
-          width: vw(404px);
-
+          width: pxToVw(404);
           height: auto;
           filter: drop-shadow(0px 12px 3px rgba(0, 0, 0, 0.501961));
           z-index: 5;
         }
-      }
-    }
-    @media screen and (min-width: $md) and (max-width: $xxxlg) {
-      .carousel-container {
-        margin-left: vw(-150px);
       }
     }
     @media screen and (max-width: $sm) {
@@ -54,7 +54,6 @@
         flex-wrap: wrap;
         gap: 0;
         height: auto;
-        width: 100vw;
         .menu-selected-image {
           width: 100vw;
           order: -1;
